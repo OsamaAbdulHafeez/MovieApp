@@ -1,0 +1,72 @@
+.movielist {
+    height: 85vh;
+    background-color: #24292c;
+    width: 30%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.movielist #loading{
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    position: absolute;
+    left: 20%;
+    top: 10%;
+    transform: translate(50%,10%);
+}
+.moviesitem{
+    overflow-y: scroll;
+}
+.sigmovie {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    align-items: center;
+    padding: 15px 30px;
+    width: 100%;
+    border-bottom: 0.5px solid #666768;
+}
+
+#poster {
+    width: 45px;
+    height: 45px;
+}
+
+#movieInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#movieInfo img {
+    width: 20px;
+}
+
+#movieInfo h3 {
+    color: white;
+    font-size: 15px;
+}
+
+#releaseDate {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#releaseDate p {
+    color: white;
+    font-size: 14px;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6e45f1;
+    border-radius: 10px;
+}
