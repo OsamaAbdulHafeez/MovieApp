@@ -7,9 +7,10 @@ import { FaStar } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 const MovieWatched = ({ movieWatched, setMovieWatched, movieObj, moviedetails, setMovieDetails, watchingList, setWatchingList }) => {
-  const [watchRating, setWatchRating] = useState()
-  const [watchTiming, setWatchTiming] = useState(0)
+  const [watchRating, setWatchRating] = useState(null)
+  const [watchTiming, setWatchTiming] = useState(null)
   const [starRating, setStarRating] = useState(null)
+  const [yourated , setYouRated] = useState(null)
   const addMovie = async (object) => {
     object.movieRated = starRating
     console.log(object)
@@ -18,11 +19,11 @@ const MovieWatched = ({ movieWatched, setMovieWatched, movieObj, moviedetails, s
     setWatchingList(watchingListcopy)
     setMovieDetails(false)
     setMovieWatched(true)
-    setWatchRating((prev) => prev ? prev : 0 + (object.imdbRating * 1))
+    setWatchRating((prev) => prev + (object.imdbRating * 1))
     const movieTime = object.Runtime.split(" ")
     setWatchTiming((prev) => prev + (movieTime[0] * 1))
     console.log(watchTiming + (movieTime[0] * 1))
-    setStarRating((prev) => prev ? prev : 0 + object.movieRated)
+    setYouRated((prev) => prev + starRating)
     // setWatchTiming((prev)=>prev?prev:0 + movieTime[0]*1)
   }
   const exit = () => {
@@ -30,12 +31,20 @@ const MovieWatched = ({ movieWatched, setMovieWatched, movieObj, moviedetails, s
     setMovieWatched(true)
   }
   const cutmovie = (id) => {
-    const deleteMovie = watchingList.findIndex(element => {
+    const deleteMovieIndex = watchingList.findIndex(element => {
       return element.imdbID === id
     })
+    const deleteMovie = watchingList.find(element => {
+      return element.imdbID === id
+    })
+    console.log(deleteMovie.imdbRating)
     const watchingListcopy = [...watchingList]
-    watchingListcopy.splice(deleteMovie, 1)
+    watchingListcopy.splice(deleteMovieIndex, 1)
     setWatchingList(watchingListcopy)
+    setWatchRating((prev) => prev - (deleteMovie.imdbRating * 1))
+    setYouRated((prev) => prev - deleteMovie.movieRated)
+    const movieTime = deleteMovie.Runtime.split(" ")
+    setWatchTiming((prev) => prev - (movieTime[0] * 1))
   }
   return (
     <div className='watchListMain'>
@@ -43,16 +52,24 @@ const MovieWatched = ({ movieWatched, setMovieWatched, movieObj, moviedetails, s
         <div id="youwatached">
           <h2>Movies you watched</h2>
           <div className='watchedinfo'>
-            <span id='hash'><img src={hash} alt="" />{watchingList.length} Movies</span>
-            <span><img src={star} alt="" />{watchRating
-              ? watchingList.length ? (watchRating / watchingList.length).toFixed(2) : "0.0"
-              : "0.0"}</span>
-            <span><img src={star} alt="" />{starRating
-             ? starRating ? (starRating / watchingList.length).toFixed(2) : '0.0'
-            : "0.0"}</span>
-            <span><img src={Timer} alt="" />{watchTiming
-              ? watchingList.length ? (watchTiming / watchingList.length).toFixed(2) : "0.0"
-              : "0.0"} min</span>
+            <span id='hash'>
+              <img src={hash} alt="" />{watchingList.length} Movies
+            </span>
+            <span>
+              <img src={star} alt="" />{watchRating
+               ? watchingList.length > 0 ? (watchRating / watchingList.length).toFixed(2) : "0.0"
+                : "0.0"}
+            </span>
+            <span>
+              <img src={star} alt="" />{yourated
+                ? watchingList.length > 0 ? (yourated / watchingList.length).toFixed(2) : "0.0"
+                : "0.0"}
+            </span>
+            <span>
+              <img src={Timer} alt="" />{watchTiming
+                ? watchingList.length > 0 ? (watchTiming / watchingList.length).toFixed(2) : "0.0"
+                : "0.0"} min
+            </span>
           </div>
         </div>
         {/* WATCHING LIST */}
@@ -108,16 +125,6 @@ const MovieWatched = ({ movieWatched, setMovieWatched, movieObj, moviedetails, s
               )
             })
             }
-
-            {/* <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' />
-            <FaRegStar id='star' /> */}
           </div>
           <button onClick={() => addMovie(movieObj)}>Add to List</button>
         </div>
