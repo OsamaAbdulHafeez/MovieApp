@@ -19,6 +19,7 @@ function App() {
           const response = await fetch(`https://www.omdbapi.com/?s=${search}&&apikey=99e183dc&&page=1`)
           const result = await response.json()
           const length = result.totalResults
+          console.log(result)
           setMovie(result.Search)
           // setPages(Math.ceil(length / 10))
         }

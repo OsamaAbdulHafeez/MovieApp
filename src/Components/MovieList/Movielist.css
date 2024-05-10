@@ -1,7 +1,7 @@
 .movielist {
     height: 85vh;
     background-color: #24292c;
-    width: 30%;
+    width: 40%;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,6 @@
 }
 .sigmovie {
     display: flex;
-    align-items: center;
     gap: 20px;
     align-items: center;
     padding: 15px 30px;
@@ -69,4 +68,24 @@
 ::-webkit-scrollbar-thumb {
     background: #6e45f1;
     border-radius: 10px;
+}
+
+
+@media only screen and (max-width:940px){
+    .movielist{
+        width: 45%;
+    }
+    /* .sigmovie {
+        flex-direction: column;
+        padding: 15px 5px;
+        align-items: none;
+    } */
+}
+@media only screen and (max-width:680px){
+    .sigmovie {
+        flex-direction: column;
+        padding: 15px 5px;
+        align-items: flex-start;
+    }
+
 }

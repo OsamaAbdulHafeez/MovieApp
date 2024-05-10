@@ -4,8 +4,9 @@
 .watchListMain{
     height: 85vh;
     background-color: #24292c;
-    width: 30%;
+    width: 40%;
     border-radius: 12px;
+    padding-bottom: 20px;
 }
 #youwatached{
     padding: 20px 30px;
@@ -24,6 +25,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 .watchedinfo span{
     display: flex;
@@ -84,6 +86,8 @@
     gap: 20px;
     width: 100%;
     position: relative;
+    overflow-y: scroll;
+    height: 100%;
 }
 #arrow{
     position: absolute;
@@ -105,7 +109,7 @@
     width: 100%;
 }
 #posterimg{
-    height: 190px;
+    height: 100%;
     width: 35%
 }
 #posterimg img{
@@ -183,3 +187,62 @@
     font-weight: 600;
 }
 
+
+@media only screen and (max-width:580px){
+    .watchListMain{
+        width: 45%;
+    }
+    #youwatached h2{
+        font-size: 12px;
+    }
+    .watchedinfo span{
+        font-size: 12px;
+    }
+    .watchedinfo{
+        gap: 10px;
+    }
+    #youwatached{
+        padding: 20px 5px;
+    }
+    .watchedinfo #hash img{
+        width: 15px;
+    }
+}
+@media only screen and (max-width:680px){
+    .poster {
+        flex-direction: column;
+        padding-bottom: 10px;
+    }
+    #posterimg{
+        width: 100%;
+        height: 190px;
+    }
+    #title{
+        padding-left: 10px;
+    }
+    #title h1{
+        font-size: 14px;
+        width: 100%;
+    }
+    #title p{
+        font-size: 12px;
+    }
+    #title img{
+        width: 18px;
+    }
+    .ratingStar{
+        width: 100%;
+        padding: 20px 0px;
+        
+    }
+    .stars{
+        flex-wrap: wrap;
+    }
+    #star{
+        font-size: 16px;  
+    }
+    .moviedesc{
+        padding: 0px 5px;
+        font-size: 14px;
+    }
+}

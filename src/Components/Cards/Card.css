@@ -2,4 +2,14 @@
     display: flex;
     justify-content: center;
     gap: 50px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+
+@media only screen and (max-width:580px){
+    .moviedetails{
+        gap: 20px;
+    }
+
 }
